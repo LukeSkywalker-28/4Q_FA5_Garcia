@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    function generateShape() {
+    input = prompt("Please enter a number:");
+    num = input;
+
+    //Asks for valid input
+    while (isNaN(num)) {
+        input = prompt("Please enter a valid input:");
+        num = input;
+    }
+
+    let shape = '';
+
+
+    if (num % 2 === 0) {
+        //Even number, print triangle
+        for (i = num; i >= 1; i--) {
+            for (j = 1; j <= i; j++) {
+                shape += j + ' ';
+            }
+            shape += '<br>';
+        }
+    } else {
+        //Odd number, print rectangle
+        for (i = num; i >= 1; i--) {
+            for (j = num; j >= 1; j--) {
+                shape += i + ' ';
+            }
+            shape += '<br>';
+        }
+    }
+    document.write(shape);
+}
+generateShape();
+    </script>
+</body>
+</html>

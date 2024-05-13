@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="contactList">
+        <p>Output:</p>
+        <ul id="list">
+            <!-- Contact list will be displayed here -->
+        </ul>
+        <div id="controls">
+            <input type="text" id="contactInput" placeholder="Enter name">
+            <button id="addBtn">Add</button>
+            <button id="removeBtn">Remove</button>
+        </div>
+        <p id="maxReachedMsg" style="display: none;">Maximum number of contacts reached!</p>
+    </div>
+
+    <script>
+        // Initialize contact list array
+        let contacts = [];
+
+        // Function to display contact list
+        function displayContacts() {
+            const listElement = document.getElementById('list');
+            listElement.innerHTML = ''; // Clear previous list
+            let listItems = '';
+            for (let i = 0; i < contacts.length; i++) {
+                listItems += '<li>' + contacts[i] + '</li>';
+            }
+            listElement.innerHTML = listItems;
+
+            // Check if contact list is full
+            const max = document.getElementById('max');
+            if (contacts.length >= 7) {
+                max.style.display = 'block'; // Show message
+                document.getElementById('contactInput').disabled = true; // Disable input field
+            } else {
+                max.style.display = 'none'; // Hide message
+                document.getElementById('contactInput').disabled = false; // Enable input field
+            }
+        }
+
+        // Function to add a contact
+        function addContact() {
+            const inputElement = document.getElementById('contactInput');
+            const contactName = inputElement.value.trim();
+
+            if (contactName !== '') {
+                contacts[contacts.length] = contactName;
+                displayContacts();
+                inputElement.value = ''; // Clear textbox value
+            }
+        }
+
+        // Function to remove last contact
+        function removeContact() {
+            if (contacts.length > 0) {
+                contacts.length -= 1;
+                displayContacts();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('addBtn').addEventListener('click', addContact);
+        document.getElementById('removeBtn').addEventListener('click', removeContact);
+
+        // Initial display of contacts
+        displayContacts();
+    </script>
+</body>
+</html>
+    
+</body>
+</html>
